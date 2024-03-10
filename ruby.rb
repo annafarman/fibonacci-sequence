@@ -44,6 +44,27 @@ def collatz_conjecture(n)
     step
 end
 
+def merge_sort(arr)
+    return arr if arr.length <= 1
+
+    mid = arr.length/2
+    left_half = merge_sort(arr.slice(0...mid)) 
+    right_half = merge_sort(arr.slice(mid..arr.length))
+    merge(left_half, right_half)
+end
+
+def merge(left, right)
+    sorted = []
+    while !left.empty? && !right.empty?
+        if left.first <= right.first
+            sorted << left.shift
+        else
+            sorted << right.shift
+        end
+    end
+    sorted.concat(left).concat(right)
+end
+
 # puts fibonacci(5)
 # puts fibonacci(7)
 # puts fibonacci(8)
@@ -67,14 +88,17 @@ end
 # puts factorial_recursion(4)
 # puts factorial_recursion(8)
 
-puts collatz_conjecture(1)
-puts collatz_conjecture(2)
-puts collatz_conjecture(3)
-puts collatz_conjecture(4)
-puts collatz_conjecture(5)
-puts collatz_conjecture(6)
-puts collatz_conjecture(7)
-puts collatz_conjecture(8)
-puts collatz_conjecture(15)
-puts collatz_conjecture(27)
-puts collatz_conjecture(50)
+# puts collatz_conjecture(1)
+# puts collatz_conjecture(2)
+# puts collatz_conjecture(3)
+# puts collatz_conjecture(4)
+# puts collatz_conjecture(5)
+# puts collatz_conjecture(6)
+# puts collatz_conjecture(7)
+# puts collatz_conjecture(8)
+# puts collatz_conjecture(15)
+# puts collatz_conjecture(27)
+# puts collatz_conjecture(50)
+
+p merge_sort([3, 2, 1, 13, 8, 5, 0, 1])
+p merge_sort([105, 79, 100, 110])
